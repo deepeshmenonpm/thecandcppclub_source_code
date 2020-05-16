@@ -10,173 +10,173 @@ using namespace std;
 class formatter
 {
 public:
-	virtual ~formatter(){}
-	
-	void format(fstream &output_file)
-	{
-		string line;
-		
-		cout << "Start entering your text" << endl;
-		cout << "Enter 'END' for ending the session" << endl;
-		
-		while(output_file)
-		{
-			getline(cin, line);
-			
-			if(line.compare("END") == 0)
-			{
-				break;
-			}
-			
-			align(line);
-			
-			output_file << line << endl;
-			line[0] = '\0';
-		}
-	}
+    virtual ~formatter(){}
+    
+    void format(fstream &output_file)
+    {
+        string line;
+        
+        cout << "Start entering your text" << endl;
+        cout << "Enter 'END' for ending the session" << endl;
+        
+        while(output_file)
+        {
+            getline(cin, line);
+            
+            if(line.compare("END") == 0)
+            {
+                break;
+            }
+            
+            align(line);
+            
+            output_file << line << endl;
+            line[0] = '\0';
+        }
+    }
 private:
-	virtual void align(string &) = 0;
+    virtual void align(string &) = 0;
 };
 
 class align_right_formatter : public formatter
 {
 private:
-	int width_;
+    int width_;
 public:
-	align_right_formatter(int width = 20) : width_{width}
-	{
-		
-	}
+    align_right_formatter(int width = 20) : width_{width}
+    {
+        
+    }
 private:
-	void align(string & line) override
-	{
-		int len = line.length();
-		const string space = " ";
-		const string new_line = "\n";
-		
-		vector <string> line_lets;
-		
-		int rem_len = len;
-		int pos = 0;
-		int count = 1;
-		int offset = 0;
-		int org = 0;
-		
-		if(rem_len <= width_)
-		{
-			line_lets.push_back(line);
-		}
-		
-		while(rem_len > width_)
-		{
-			offset = width_ * count;
-			while(true)
-			{
-				if(line[offset] == ' ')
-				{
-					if(offset - org <= width_)
-					{
-						break;
-					}
-					else if (offset - 1 < 0) 
-					{
-						break;
-					}
-					
-					// The string is still lengthy
-					// can't break here 
-					
-				}
-				--offset;
-			}
-			
-			line.insert(offset, new_line);
-			len = line.length();
-			rem_len = (len - offset) + 1;
-			org = len - rem_len;
-			count++;
-		}
-		
-		stringstream ss(line);
-		string tmp;
-		
-		while(getline(ss, tmp, '\n'))
-		{
-			line_lets.push_back(tmp);
-		}
-		
-		line.clear();
-		
-		for(auto str : line_lets)
-		{
-			int limit = width_ - str.length() - 1;
-			
-			for(int i = 0; i < limit; ++i)
-			{
-				str.insert(i, space);
-			}
-			
-			line.append(str);
-			line.append(new_line);
-		}
-		
-		return;
-	}
+    void align(string & line) override
+    {
+        int len = line.length();
+        const string space = " ";
+        const string new_line = "\n";
+        
+        vector <string> line_lets;
+        
+        int rem_len = len;
+        int pos = 0;
+        int count = 1;
+        int offset = 0;
+        int org = 0;
+        
+        if(rem_len <= width_)
+        {
+            line_lets.push_back(line);
+        }
+        
+        while(rem_len > width_)
+        {
+            offset = width_ * count;
+            while(true)
+            {
+                if(line[offset] == ' ')
+                {
+                    if(offset - org <= width_)
+                    {
+                        break;
+                    }
+                    else if (offset - 1 < 0) 
+                    {
+                        break;
+                    }
+                    
+                    // The string is still lengthy
+                    // can't break here 
+                    
+                }
+                --offset;
+            }
+            
+            line.insert(offset, new_line);
+            len = line.length();
+            rem_len = (len - offset) + 1;
+            org = len - rem_len;
+            count++;
+        }
+        
+        stringstream ss(line);
+        string tmp;
+        
+        while(getline(ss, tmp, '\n'))
+        {
+            line_lets.push_back(tmp);
+        }
+        
+        line.clear();
+        
+        for(auto str : line_lets)
+        {
+            int limit = width_ - str.length() - 1;
+            
+            for(int i = 0; i < limit; ++i)
+            {
+                str.insert(i, space);
+            }
+            
+            line.append(str);
+            line.append(new_line);
+        }
+        
+        return;
+    }
 
 };
 
 class align_left_formatter : public formatter
 {
 private:
-	int width_;
+    int width_;
 public:
-	align_left_formatter(int width = 20) : width_{width}
-	{
-		// do nothing
-	}
+    align_left_formatter(int width = 20) : width_{width}
+    {
+        // do nothing
+    }
 private:
-	void align(string & line) override
-	{
-		int count = 1;
-		int offset = 0;
-		int len = line.length();
-		const string new_line{"\n"};
-		int rem_len = len;
-		int org = 0;
-		
-		while(rem_len >= width_)
-		{
-			offset = width_ * count;
-			
-			while(true)
-			{
-				if(line[offset] == ' ')
-				{
-					if(offset - org <= width_)
-					{
-						break;
-					}
-					else if (offset - 1 < 0) 
-					{
-						break;
-					}
-					
-					// The string is still lengthy
-					// can't break here 
-					
-				}
-				--offset;
-			}
-			
-			line.insert(offset + 1, new_line);
-			len = line.length();
-			rem_len = (len - offset) + 1;
-			org = len - rem_len;
-			count++;
-		}
-		
-		return;
-	}
+    void align(string & line) override
+    {
+        int count = 1;
+        int offset = 0;
+        int len = line.length();
+        const string new_line{"\n"};
+        int rem_len = len;
+        int org = 0;
+        
+        while(rem_len >= width_)
+        {
+            offset = width_ * count;
+            
+            while(true)
+            {
+                if(line[offset] == ' ')
+                {
+                    if(offset - org <= width_)
+                    {
+                        break;
+                    }
+                    else if (offset - 1 < 0) 
+                    {
+                        break;
+                    }
+                    
+                    // The string is still lengthy
+                    // can't break here 
+                    
+                }
+                --offset;
+            }
+            
+            line.insert(offset + 1, new_line);
+            len = line.length();
+            rem_len = (len - offset) + 1;
+            org = len - rem_len;
+            count++;
+        }
+        
+        return;
+    }
 
 };
 
@@ -327,7 +327,7 @@ private:
     string name_;
     doc_states current_state;
     vector<Observer*> observers; 
-	fstream file;
+    fstream file;
 public:
     typedef void (Document::*doc_function)();
     Document(): current_state{doc_states::created}
@@ -349,24 +349,24 @@ public:
     {
         cout << "Enter the file name to open for reading" << endl;
         cin >> name_;
-		
-		
-		file.open(name_, ios::in); // read only mode 
-		
-		if(file)
-		{
-			current_state = doc_states::opened;
-			cout << "Document : " << name_ << " is open for reading!\n" << endl;
-			string line;
-			
-			while(file >> line)
-			{
-				cout << line << endl;			
-			}
-			
-			cout << "\nEnd of File!" << endl;
-			
-		}
+        
+        
+        file.open(name_, ios::in); // read only mode 
+        
+        if(file)
+        {
+            current_state = doc_states::opened;
+            cout << "Document : " << name_ << " is open for reading!\n" << endl;
+            string line;
+            
+            while(file >> line)
+            {
+                cout << line << endl;            
+            }
+            
+            cout << "\nEnd of File!" << endl;
+            
+        }
     }
     
     void open_write()
@@ -374,47 +374,47 @@ public:
         cout << "Enter the file name to open for writing" << endl;
         cin >> name_;
         
-		file.open(name_, ios::app); // write in append mode  
-		formatter *frmtr = nullptr;
-		
-		if(file)
-		{
-			file << "\n" << endl;
-			current_state = doc_states::opened;
-			cout << "Document : " << name_ << " is open for writing" << endl;
-			// start writing
-			cout << "Select alignment : Left(0), Right(1)" << endl;
-			
-			int alignment_selected = 0;
-			int width = 0;
-			
-			cin >> alignment_selected;
-			
-			cout << "Select width : " << endl;
-			cin >> width;
-			if( (width < 0) || (width > 30) )
-			{
-				width = 20;
-			}
-				
-			if(alignment_selected == 1)
-			{
-				// right 
-				frmtr = new align_right_formatter(width);
-			}
-			else
-			{
-				// left 
-				frmtr = new align_left_formatter(width);
-			}
-			
-			if(frmtr != nullptr)
-			{
-				frmtr->format(file);
-				delete frmtr;
-			}
-			
-		}
+        file.open(name_, ios::app); // write in append mode  
+        formatter *frmtr = nullptr;
+        
+        if(file)
+        {
+            file << "\n" << endl;
+            current_state = doc_states::opened;
+            cout << "Document : " << name_ << " is open for writing" << endl;
+            // start writing
+            cout << "Select alignment : Left(0), Right(1)" << endl;
+            
+            int alignment_selected = 0;
+            int width = 0;
+            
+            cin >> alignment_selected;
+            
+            cout << "Select width : " << endl;
+            cin >> width;
+            if( (width < 0) || (width > 30) )
+            {
+                width = 20;
+            }
+                
+            if(alignment_selected == 1)
+            {
+                // right 
+                frmtr = new align_right_formatter(width);
+            }
+            else
+            {
+                // left 
+                frmtr = new align_left_formatter(width);
+            }
+            
+            if(frmtr != nullptr)
+            {
+                frmtr->format(file);
+                delete frmtr;
+            }
+            
+        }
     }
     
     void close()
@@ -423,7 +423,7 @@ public:
             &&(current_state != doc_states::created) )
         {
             file.close();
-			current_state = doc_states::closed;
+            current_state = doc_states::closed;
             cout << "Document : " << name_ << " is closed" << endl;
             name_.clear();
             // notify the subscribed observers 
@@ -626,7 +626,7 @@ public:
         string doc_name;
         trigger = signal::app_launched;
         
-        cout << "Document Editor App, Version : 3.0" << endl;
+        cout << "Document Editor App, Version : 4.0" << endl;
         
         shared_ptr<Document> document = make_shared<Document>();
         current_doc = document;
