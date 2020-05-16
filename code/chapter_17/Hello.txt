@@ -1,0 +1,116 @@
+
+
+
+Hello How are you ? 
+I am fine, 
+Thanks. How are 
+you? Am fine too. 
+Heard that you 
+are working on a 
+book on the 
+philosophy of C 
+and C++ ? How 
+it's going ? It's 
+going well and 
+keeps me engaged. 
+Okay good to hear 
+that. All the 
+best for your 
+endeavor!!!
+
+I have been 
+pondering about 
+starting a blog 
+on my 
+understanding of 
+the popular 
+programming 
+languages C and 
+C++ for quite 
+some time. I am 
+not a seasoned 
+writer. To be 
+honest with you, 
+I am still a 
+little skeptical 
+to foray into 
+this world of 
+blogging! I 
+always try to 
+understand a 
+thing to it's 
+very core by 
+analyzing it, 
+understand how it 
+works and why it 
+works the way it 
+does. And once I 
+understand these, 
+I will articulate 
+or rather try to 
+teach them to my 
+colleagues and 
+peers. I think, I 
+have got some 
+good experience 
+in that regard.
+
+
+                   
+
+Hello How are you ?
+         I am fine,
+    Thanks. How are
+  you? Am fine too.
+     Heard that you
+   are working on a
+        book on the
+    philosophy of C
+      and C++ ? How
+  it's going ? It's
+     going well and
+  keeps me engaged.
+  Okay good to hear
+      that. All the
+      best for your
+        endeavor!!!
+
+                   
+
+        I have been
+    pondering about
+    starting a blog
+              on my
+   understanding of
+        the popular
+        programming
+    languages C and
+      C++ for quite
+    some time. I am
+     not a seasoned
+      writer. To be
+   honest with you,
+       I am still a
+   little skeptical
+      to foray into
+      this world of
+        blogging! I
+      always try to
+       understand a
+      thing to it's
+       very core by
+      analyzing it,
+  understand how it
+   works and why it
+   works the way it
+   does. And once I
+  understand these,
+  I will articulate
+   or rather try to
+   teach them to my
+     colleagues and
+  peers. I think, I
+      have got some
+    good experience
+    in that regard.
+
