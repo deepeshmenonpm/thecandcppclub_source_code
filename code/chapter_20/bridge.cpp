@@ -111,7 +111,10 @@ public:
             }            
         }
     }
-    ~Bulb(){}
+    ~Bulb()
+    {
+        delete light_device;
+    }
     
     void set_current_state(State *state)
     {
