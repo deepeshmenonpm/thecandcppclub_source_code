@@ -522,19 +522,6 @@ public:
     
 };
 
-void app_thread_function(void)
-{
-    Application new_app;
-    int end_app = 0;
-    
-    while(end_app == 0)
-    {
-        end_app = new_app.select_menu();
-    }
-    
-    return;
-}
-
 int main()
 {
     Application new_app;

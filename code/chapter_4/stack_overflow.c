@@ -89,7 +89,7 @@ void do_some_operation(int array[], const int size)
 	return;
 }
 
-// I dont recommend the following at all.
+// I don't recommend the following at all.
 void do_some_operation(int *array){...}
 void do_some_operation(int *array, const int size){...}
 
